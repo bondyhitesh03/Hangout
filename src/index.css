@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #070a12;
+  color: #e6e9f2;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Subtle ambient background */
+.app-bg {
+  background:
+    radial-gradient(1200px 600px at 12% -8%, rgba(124, 156, 255, 0.10), transparent 60%),
+    radial-gradient(1000px 500px at 92% 8%, rgba(74, 222, 128, 0.06), transparent 55%),
+    linear-gradient(180deg, #0b0f1a 0%, #070a12 100%);
+}
+
+/* Custom scrollbar */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2c375d, #1a2138);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #3f5ae6, #2c375d);
+  background-clip: padding-box;
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-white/5 bg-ink-850/70 backdrop-blur-sm shadow-card;
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:border-white/10 hover:shadow-glow;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn text-white;
+    background-image: linear-gradient(135deg, #5c7bff 0%, #4ade80 100%);
+    box-shadow: 0 8px 24px -10px rgba(92, 123, 255, 0.6);
+  }
+  .btn-primary:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+  }
+  .btn-ghost {
+    @apply btn text-slate-300 hover:text-white hover:bg-white/5;
+  }
+  .btn-outline {
+    @apply btn border border-white/10 text-slate-200 hover:border-brand-400/50 hover:bg-brand-400/5;
+  }
+  .input {
+    @apply w-full rounded-xl border border-white/10 bg-ink-900/60 px-3.5 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 outline-none transition-all duration-200 focus:border-brand-400/60 focus:ring-2 focus:ring-brand-400/20;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300;
+  }
+  .logo-text {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    background: linear-gradient(135deg, #8fa6ff 0%, #4ade80 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* Line clamp helpers */
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

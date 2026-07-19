@@ -96,15 +96,7 @@ export function ProfilePage({ userId }: Props) {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-6 md:py-8">
-      {/* Banner */}
-      <div
-        className="card relative overflow-hidden"
-        style={{ backgroundImage: 'linear-gradient(135deg, rgba(92,123,255,0.18) 0%, rgba(74,222,128,0.10) 100%)' }}
-      >
-        <div className="h-24 md:h-32" />
-      </div>
-
-      <div className="-mt-10 px-4 md:-mt-12">
+      <div className="px-4">
         <div className="flex items-end justify-between gap-3">
           <div className="rounded-full bg-ink-900 p-1">
             <Avatar url={profile.avatar_url} name={displayName} size={88} ring />

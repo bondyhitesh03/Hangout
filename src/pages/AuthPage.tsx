@@ -80,7 +80,8 @@ export function AuthPage() {
 
         {/* Logo */}
         <div className="relative z-10">
-          <span className="logo-text text-4xl">Hangout</span>
+          <span className="logo-text text-5xl" style={{ textShadow: '0 0 40px rgba(92,123,255,0.5)' }}>Hangout</span>
+          <p className="mt-1 text-xs tracking-widest uppercase text-slate-500 font-medium">Your space to connect</p>
         </div>
 
         {/* Hero image area */}
@@ -93,10 +94,10 @@ export function AuthPage() {
             }}
           >
             <img
-              src="https://images.pexels.com/photos/1485894/pexels-photo-1485894.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt="Community"
-              className="w-full h-full object-cover opacity-70 mix-blend-luminosity"
-              style={{ filter: 'saturate(0.6) brightness(0.8)' }}
+              src="https://images.pexels.com/photos/1267244/pexels-photo-1267244.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Friends hanging out"
+              className="w-full h-full object-cover"
+              style={{ filter: 'saturate(0.75) brightness(0.72)' }}
             />
           </div>
         </div>
@@ -119,20 +120,11 @@ export function AuthPage() {
           </p>
           <p className="mt-2 text-sm text-slate-400">A minimal place to post, yap, and explore.</p>
 
-          {/* Dot indicators */}
           <div className="flex gap-1.5 mt-6">
-            {[0, 1, 2].map((i) => (
-              <span
-                key={i}
-                className="block h-1.5 rounded-full"
-                style={{
-                  width: i === 0 ? '24px' : '8px',
-                  background: i === 0
-                    ? 'linear-gradient(90deg, #5c7bff, #4ade80)'
-                    : 'rgba(255,255,255,0.15)',
-                }}
-              />
-            ))}
+            <span
+              className="block h-1.5 rounded-full"
+              style={{ width: '32px', background: 'linear-gradient(90deg, #5c7bff, #4ade80)' }}
+            />
           </div>
         </div>
       </div>
@@ -141,7 +133,8 @@ export function AuthPage() {
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-12 app-bg">
         {/* Mobile logo */}
         <div className="md:hidden mb-8 text-center">
-          <span className="logo-text text-5xl">Hangout</span>
+          <span className="logo-text text-5xl" style={{ textShadow: '0 0 40px rgba(92,123,255,0.5)' }}>Hangout</span>
+          <p className="mt-1 text-xs tracking-widest uppercase text-slate-500 font-medium">Your space to connect</p>
         </div>
 
         <div className="w-full max-w-md animate-rise">

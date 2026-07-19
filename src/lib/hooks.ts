@@ -444,6 +444,28 @@ export function useTriviaAnswers(userId: string | null) {
   return { answered, loading, reload: load };
 }
 
+export function useAllProfiles() {
+  const [profiles, setProfiles] = useState<Profile[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    const { data } = await supabase
+      .from('profiles')
+      .select('id, username, full_name, avatar_url, created_at, aura_plus, aura_minus')
+      .order('created_at', { ascending: false })
+      .limit(200);
+    setProfiles((data ?? []) as unknown as Profile[]);
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    load();
+  }, [load]);
+
+  return { profiles, loading, reload: load };
+}
+
 export function useLeaderboard() {
   const [rows, setRows] = useState<LeaderboardEntry[]>([]);
   const [loading, setLoading] = useState(true);

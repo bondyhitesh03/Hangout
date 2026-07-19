@@ -8,6 +8,7 @@ import { SearchModal } from './components/SearchModal';
 import { AuthPage } from './pages/AuthPage';
 import { HomePage } from './pages/HomePage';
 import { ExplorePage } from './pages/ExplorePage';
+import { BuddiesPage } from './pages/BuddiesPage';
 import { SnippetPage } from './pages/SnippetPage';
 import { BlogsPage } from './pages/BlogsPage';
 import { TriviaPage } from './pages/TriviaPage';
@@ -39,6 +40,9 @@ function Shell() {
   switch (route.name) {
     case 'explore':
       page = <ExplorePage />;
+      break;
+    case 'buddies':
+      page = <BuddiesPage />;
       break;
     case 'snippet':
       page = <SnippetPage />;

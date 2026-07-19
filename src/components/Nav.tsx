@@ -1,4 +1,4 @@
-import { Home, Compass, MessageSquareText, User, LogOut, Plus, Search, Clapperboard, Send, Feather, Brain } from 'lucide-react';
+import { Home, Compass, MessageSquareText, Contact, LogOut, Plus, Search, Clapperboard, Send, Feather, Brain, Users } from 'lucide-react';
 import { useAuth } from '../lib/auth';
 import { useRouter, type Route } from '../lib/router';
 import { Avatar } from './Avatar';
@@ -14,6 +14,7 @@ type Item = { key: string; label: string; icon: typeof Home; route: Route };
 const items: Item[] = [
   { key: 'home', label: 'Home', icon: Home, route: { name: 'home' } },
   { key: 'explore', label: 'Explore', icon: Compass, route: { name: 'explore' } },
+  { key: 'buddies', label: 'Buddies', icon: Users, route: { name: 'buddies' } },
   { key: 'snippet', label: 'Snippet', icon: Clapperboard, route: { name: 'snippet' } },
   { key: 'blogs', label: 'Blogs', icon: Feather, route: { name: 'blogs' } },
   { key: 'trivia', label: 'Trivia', icon: Brain, route: { name: 'trivia' } },
@@ -80,8 +81,8 @@ export function Nav({ onCompose, onSearch }: NavProps) {
                   : 'text-slate-400 hover:text-white hover:bg-white/5',
               )}
             >
-              <User size={20} className={route.name === 'profile' ? 'text-brand-300' : ''} />
-              Profile
+              <Contact size={20} className={route.name === 'profile' ? 'text-brand-300' : ''} />
+              My ID
             </button>
           )}
         </nav>
@@ -145,8 +146,8 @@ export function Nav({ onCompose, onSearch }: NavProps) {
               route.name === 'profile' ? 'text-brand-300' : 'text-slate-500',
             )}
           >
-            <User size={18} />
-            You
+            <Contact size={18} />
+            ID
           </button>
         )}
       </nav>

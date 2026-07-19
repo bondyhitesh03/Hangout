@@ -5,6 +5,7 @@ import { useAuth } from '../lib/auth';
 import { Avatar } from '../components/Avatar';
 import { useRouter } from '../lib/router';
 import { cn } from '../lib/utils';
+import type { TriviaQuestion } from '../lib/types';
 
 export function TriviaPage() {
   const { user, profile } = useAuth();
@@ -15,6 +16,7 @@ export function TriviaPage() {
   const [picked, setPicked] = useState<number | null>(null);
   const [result, setResult] = useState<{ correct: boolean; error: string | null } | null>(null);
   const [busy, setBusy] = useState(false);
+  const [activeQuestion, setActiveQuestion] = useState<TriviaQuestion | null>(null);
 
   const answeredIds = new Set(answered.map((a) => a.question_id));
   const current = questions.find((q) => !answeredIds.has(q.id)) ?? null;
@@ -22,6 +24,7 @@ export function TriviaPage() {
 
   const choose = async (idx: number) => {
     if (!user || !current || busy) return;
+    setActiveQuestion(current);
     setPicked(idx);
     setBusy(true);
     const res = await submitTriviaAnswer(user.id, current, idx);
@@ -36,6 +39,7 @@ export function TriviaPage() {
   const next = () => {
     setPicked(null);
     setResult(null);
+    setActiveQuestion(null);
   };
 
   return (
@@ -61,24 +65,26 @@ export function TriviaPage() {
         {loading && (
           <div className="flex justify-center py-10 text-slate-500"><Loader2 className="animate-spin" /></div>
         )}
-        {!loading && !current && (
+        {!loading && !current && !activeQuestion && (
           <div className="flex flex-col items-center gap-2 py-8 text-center">
             <Trophy className="text-mint-400" />
             <p className="text-sm text-slate-300">You've answered all the questions!</p>
             <p className="text-xs text-slate-500">Check back later for more trivia.</p>
           </div>
         )}
-        {!loading && current && (
+        {!loading && (current || activeQuestion) && (() => {
+          const q = result ? activeQuestion! : current!;
+          return (
           <>
-            {current.category && (
-              <span className="mb-2 inline-block rounded-full bg-white/5 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-brand-300">{current.category}</span>
+            {q.category && (
+              <span className="mb-2 inline-block rounded-full bg-white/5 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-brand-300">{q.category}</span>
             )}
-            <p className="text-base font-medium leading-relaxed text-slate-100">{current.question}</p>
+            <p className="text-base font-medium leading-relaxed text-slate-100">{q.question}</p>
             <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {current.options.map((opt, i) => {
+              {q.options.map((opt, i) => {
                 const isPicked = picked === i;
                 const reveal = result !== null;
-                const isCorrect = i === current.correct_index;
+                const isCorrect = i === q.correct_index;
                 return (
                   <button
                     key={i}
@@ -110,7 +116,8 @@ export function TriviaPage() {
               </div>
             )}
           </>
-        )}
+          );
+        })()}
       </section>
 
       {/* Leaderboard */}

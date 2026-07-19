@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 type Route =
   | { name: 'home' }
   | { name: 'explore' }
+  | { name: 'buddies' }
   | { name: 'snippet' }
   | { name: 'blogs' }
   | { name: 'trivia' }
@@ -23,6 +24,7 @@ function parseHash(): Route {
   const h = window.location.hash.replace(/^#\/?/, '');
   const [seg, param] = h.split('/');
   if (seg === 'explore') return { name: 'explore' };
+  if (seg === 'buddies') return { name: 'buddies' };
   if (seg === 'snippet') return { name: 'snippet' };
   if (seg === 'blogs') return { name: 'blogs' };
   if (seg === 'trivia') return { name: 'trivia' };
@@ -40,6 +42,8 @@ function toHash(r: Route): string {
       return '#/';
     case 'explore':
       return '#/explore';
+    case 'buddies':
+      return '#/buddies';
     case 'yap':
       return '#/yap';
     case 'snippet':

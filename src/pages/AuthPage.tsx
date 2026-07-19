@@ -94,10 +94,9 @@ export function AuthPage() {
             }}
           >
             <img
-              src="https://images.pexels.com/photos/1267244/pexels-photo-1267244.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt="Friends hanging out"
+              src="/image.png"
+              alt="Abstract waves"
               className="w-full h-full object-cover"
-              style={{ filter: 'saturate(0.75) brightness(0.72)' }}
             />
           </div>
         </div>
